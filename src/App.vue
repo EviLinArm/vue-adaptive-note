@@ -1,11 +1,5 @@
-<script setup>
-
-</script>
-
 <template>
-  <div>Lets start!</div>
+  <RouterLink to="/">Notes | </RouterLink>
+  <RouterLink to="/stats">Stats</RouterLink>
+  <RouterView />
 </template>
-
-<style scoped>
-
-</style>
