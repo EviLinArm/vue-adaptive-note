@@ -5,15 +5,16 @@
         <button @click="addNote" :disabled="!newNote" class="button is-link has-background-success">Add note</button>
       </template>
     </AddEditNote>
-    <Note v-for="note of storeNotes.notes" :note="note" @deleteClicked="deleteNote" :key="note.id"/>
+    <Note v-for="note of storeNotes.notes" :note="note" :key="note.id"/>
   </div>
 </template>
 
 <script setup>
-import {ref} from "vue";
+import {ref, watch} from "vue";
 import {useStoreNotes} from "@/stores/storeNotes";
 import Note from "@/components/notes/Note.vue";
 import AddEditNote from "@/components/notes/AddEditNote.vue";
+import useWatchCharacters from "@/use/useWatchCharacters";
 
 const storeNotes = useStoreNotes()
 const newNote = ref('')
@@ -25,7 +26,5 @@ const addNote = () => {
   addEditNoteRef.value.focusTextarea()
 }
 
-const deleteNote = (idToDelete) => {
-  storeNotes.deleteNote(idToDelete)
-}
+useWatchCharacters(newNote, 15)
 </script>
